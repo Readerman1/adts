@@ -15,7 +15,6 @@ class List::Node //self-referential Node class
 	
 	};//end Node class definition (can only be seen by the List class)
 
-
 List::~List()
 {
     while(num_elements > 0)
@@ -91,5 +90,26 @@ void List::remove(int k)
 	num_elements--;
 	}
 	
+	void List::get(int k)
+{
+   if (k>num_elements or k<1){
+	   throw out_of_range("list::get:" +to_string(k)+") failed. (valid indices are 1 to"+to_string(num_elements+1)+")");
+	   Node* tmpPtr =frontPtr;
+	   for(int i=1;i!=k;i++){
+		   tmpPtr=tmpPtr->link;
+		   }
+		   return tmpPtr->data;
+	   }
+}
+void list::clear()
+{
+	while(num_elements >0)
+	remove(1);
+}
+void List::display()//For debugging purposes only
+{
+   for(Node* curPtr = frontPtr; curPtr != nullptr; curPtr = curPtr->link)
+      cout<<curPtr->data<<" ";	
+}
 	//Implementations of missing operations
 	
